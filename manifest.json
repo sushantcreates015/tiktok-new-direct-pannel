@@ -1,0 +1,9 @@
+{
+  "name": "TikTok LIVE Rewards",
+  "short_name": "Rewards",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f3f3f4",
+  "theme_color": "#fe2c55",
+  "icons": []
+}

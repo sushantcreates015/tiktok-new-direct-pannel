@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>TikTok LIVE Rewards</title>
+  <meta name="theme-color" content="#fe2c55" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="phone">
+    <section class="screen active" id="screen-home">
+      <header class="topbar">
+        <button class="icon-btn" aria-label="Back">‹</button>
+        <h1>LIVE rewards</h1>
+        <button class="icon-btn dots" aria-label="More">•••</button>
+      </header>
+
+      <div class="content">
+        <div class="card notice-card">
+          <h3 id="bannerTitle">Identity verified</h3>
+          <p id="bannerText">Your identity is verified. You can continue with transactions.</p>
+        </div>
+
+        <div class="card rewards-split">
+          <div class="split-cell">
+            <p class="muted cap">Available rewards</p>
+            <h3 id="miniAvailable">USD9,691,068.00</h3>
+          </div>
+          <div class="divider"></div>
+          <div class="split-cell">
+            <p class="muted cap">Upcoming rewards</p>
+            <h3 class="danger" id="miniUpcoming">● USD2,000,000.00</h3>
+          </div>
+        </div>
+
+        <div class="card balance-card">
+          <p class="muted center cap">Available rewards</p>
+          <div class="balance-line">
+            <span class="currency">USD</span>
+            <span class="balance" id="balanceMain">9,691,068</span>
+            
+          </div>
+
+          <button class="btn btn-primary" data-go="screen-transfer">Transfer</button>
+          <button class="btn btn-outline">Exchange</button>
+
+          <div class="limit-row">
+            <div class="limit-copy">
+              <p class="muted cap">Daily transfer limit (Remain/Total)</p>
+              <button class="text-link">How to increase transfer limit? ›</button>
+            </div>
+            <strong id="limitLabel">$9.7M/$10.0M</strong>
+          </div>
+        </div>
+
+        <div class="card transactions-card">
+          <h2>Transactions</h2>
+          <div class="month-row">
+            <div class="month">Mar<br>2026</div>
+            <div class="io-col"><span class="muted cap">In:</span><br><strong id="inTotal">USD9,691,068.00</strong></div>
+            <div class="io-col"><span class="muted cap">Out:</span><br><strong id="outTotal">USD0.00</strong></div>
+          </div>
+          <div id="transactionsList"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-transfer">
+      <header class="topbar">
+        <button class="icon-btn" data-go="screen-home" aria-label="Back">‹</button>
+        <h1>Transfer</h1>
+        <button class="help-btn" aria-label="Help">?</button>
+      </header>
+
+      <div class="content">
+        <div class="payment-head">
+          <span class="muted section-label">Payment method</span>
+          <button class="manage-link">Manage</button>
+        </div>
+
+        <div class="card method-card">
+          <div class="tiktok-mark"><img src="tiktokicon.png" alt="TikTok" class="tt-icon" /></div>
+          <div class="method-copy">
+            <strong>Transfer name</strong>
+            <span class="muted">(Username Details)</span>
+          </div>
+          <div class="chevron">›</div>
+        </div>
+
+        <div class="card input-card">
+          <input id="usernameInput" type="text" placeholder="@Enter TikTok username" autocomplete="off" />
+        </div>
+
+        <div class="card profile-card hidden" id="profileCard">
+          <img id="profileImage" class="pfp" alt="Profile picture" />
+          <div class="profile-copy">
+            <h3 id="profileDisplay">S A G E</h3>
+            <p id="profileUsername">@sageastra</p>
+            <p class="muted" id="profileFollowers">984 followers</p>
+          </div>
+        </div>
+
+        <div class="transfer-limit">
+          <span class="muted cap">Daily transfer limit (Remain/Total)</span>
+          <strong id="limitPlain">9.7 / 10.0M</strong>
+        </div>
+
+        <div class="card amount-card">
+          <p class="muted cap">Transfer amount</p>
+          <div class="amount-input-row">
+            <label class="amount-prefix" for="amountInput">USD</label>
+            <input id="amountInput" class="amount-input" type="number" min="0" step="1" value="0" />
+            <button class="all-link" id="fillAll">All</button>
+          </div>
+        </div>
+
+        <div class="card estimate-card">
+          <p class="muted cap">Estimated amount you receive <span class="tiny-help">?</span></p>
+          <div class="receive-value" id="receiveView">USD 0.00</div>
+        </div>
+
+        <div class="fee-row">
+          <span class="muted cap">Service fee <span class="tiny-help">?</span></span>
+          <strong id="feeView">USD 30.00</strong>
+        </div>
+
+        <p class="terms">
+          TikTok <span>Terms of Service</span> and <strong>Privacy Policy</strong>.
+          Payment transactions are processed by PIPO. <strong>PIPO Privacy Policy</strong>
+        </p>
+
+        <button class="btn btn-primary" id="openConfirm">Transfer</button>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-loading">
+      <div class="loader-screen">
+        <div class="loader-wrap">
+          <div class="loader-ring"></div>
+          <p>TikTok transfer processing...</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-complete">
+      <header class="topbar">
+        <button class="icon-btn" data-go="screen-home" aria-label="Back">‹</button>
+        <h1>Transfer details</h1>
+        <div class="spacer"></div>
+      </header>
+
+      <div class="content">
+        <div class="card transfer-summary">
+          <p class="muted center cap">LIVE rewards transfer to TikTok</p>
+          <div class="balance-line">
+            <span class="currency">USD</span> <span class="balance smaller" id="detailsAmount">0.00</span>
+          </div>
+        </div>
+
+        <div class="card detail-list">
+          <div class="detail-row"><span>Status</span><strong class="success">Withdrawal complete</strong></div>
+          <div class="detail-row"><span>Payment method</span><strong id="detailsUser">TikTok(@sageastra)</strong></div>
+          <div class="detail-row"><span>Service fee <span class="tiny-help inline-help">i</span></span><strong id="detailsFee">30.00 USD</strong></div>
+          <div class="detail-row"><span>Estimated amount you receive <span class="tiny-help inline-help">i</span></span><strong id="detailsReceive">0.00 USD</strong></div>
+          <div class="detail-row"><span>Transfer time</span><strong id="detailsTime">03/16/2026, 10:15:46 AM</strong></div>
+          <div class="detail-row"><span>Arrival time</span><strong>30 Minutes in arrival</strong></div>
+          <div class="detail-row"><span>Transaction ID</span><strong id="txId">1773635446559</strong></div>
+        </div>
+
+        <button class="btn btn-primary" data-go="screen-home">Back to Rewards</button>
+        <button class="ghost-link">Need help? ›</button>
+      </div>
+    </section>
+
+    <div class="modal hidden" id="confirmModal">
+      <div class="backdrop"></div>
+      <div class="sheet">
+        <div class="sheet-header">
+          <h2>Transfer details</h2>
+          <button class="close-btn" id="closeConfirm">×</button>
+        </div>
+        <div class="sheet-row"><span>Transfer to</span><strong id="sheetUser">TikTok (@sageastra)</strong></div>
+        <div class="sheet-row"><span>Transfer amount</span><strong id="sheetAmount">0.00 USD</strong></div>
+        <div class="sheet-row"><span>Service fee</span><strong id="sheetFee">30.00 USD</strong></div>
+        <div class="sheet-row"><span>Estimated amount you receive</span><strong id="sheetReceive">0.00 USD</strong></div>
+        <button class="btn btn-primary" id="confirmTransfer">Confirm</button>
+      </div>
+    </div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
